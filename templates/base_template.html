@@ -4,43 +4,55 @@
 
 {% block head %}
 {{ super() }}
+<link href="{{ url_for ('static', filename='jumbotron-narrow.css') }}" rel="stylesheet">
 <link rel="shortcut icon" href="{{ url_for ('static', filename='favicon.ico') }}" type="image/x-icon" >
 <link rel="icon" href="{{ url_for ('static', filename='favicon.ico') }}" type="image/x-icon" >
+<link rel="stylesheet" href="{{ url_for ('static', filename='style.css') }}">
 {% endblock %}
 
 {% block navbar %}
-<div class="navbar navbar-expand-lg navbar-light bg-light" role=navigation>
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="{{ url_for('index') }}"><h1>Language Sparks Speech Services</h1>
-        <p>MarjaWicks BA., MSC., SLP(C), Reg.CASLPO</p></a>
-      </div>
-    </div>
-    <div class="navbar-collapse collapse" >
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item"> <a class="nav-link" href="{{ url_for ('index') }}">Home</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="{{ url_for ('services') }}">Services</a></li>
-        <li class="nav-item"> <a class="nav-link" href="{{ url_for ('about') }}">About Me</a></li>
-        <li class="nav-item"> <a class="nav-link" href="{{ url_for ('links') }}">Links & Resources</a></li>
-        <li class="nav-item"> <a class="nav-link" href="{{ url_for ('contact') }}">Contact</a></li>
+<div class="container">
+  <div class="header clearfix">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        <li role="presentation"> <a class="nav-link" href="{{ url_for ('index') }}">Home</a> </li>
+        <li role="presentation"> <a class="nav-link" href="{{ url_for ('services') }}">Services</a></li>
+        <li role="presentation"> <a class="nav-link" href="{{ url_for ('about') }}">About Me</a></li>
+        <li role="presentation"> <a class="nav-link" href="{{ url_for ('links') }}">Links & Resources</a></li>
+        <li role="presentation"> <a class="nav-link" href="{{ url_for ('contact') }}">Contact</a></li>
       </ul>
-    </div>
+    </nav>
+    <h3 class="text-muted">Language Sparks Speech Services</h3>
   </div>
-  {% endblock %}
+</div>
+{% endblock %}
 
 {% block content %}
-<div id="sidebar">
-        <script src="news.js"></script>
+<div class="jumbotron">
+  <h1>Language Sparks Speech Services</h1>
+  <h2>Marja Wicks BA., MSC., SLP(C), Reg.CASLPO</h2>
 </div>
-<div class="container">
-  {% block page_content %}{%endblock%}
+
+<div id="row">
+  <div class="col-lg-9">
+    {% block page_content %}{%endblock%}
+  </div>
+  <div class="col-lg-3">
+    <div class="news_sidebar">
+      <script src="{{ url_for ('static', filename='news.js') }}"></script>
+    </div>
+  </div>
 </div>
-<div class=footer>
+
+<div id="row">
+  <div class='col-lg-12'>
+    <br>
+    {% block pre_footer %}{% endblock %}
+  </div>
+</div>
+<footer class="footer">
   <p>Copyright &copy; Language Sparks Speech Services {{ moment().format('YYYY') }} | Designed by Ryan Wicks</p>
-</div>
+</footer>
 {% endblock %}
 
 {% block scripts %}
