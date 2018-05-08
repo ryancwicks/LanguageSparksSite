@@ -1,4 +1,6 @@
 {% extends "bootstrap/base.html" %}
+{% import "macros.html" as macros %}
+{% set active_page = active_page|default('main.index') %}
 
 {% block title %}Language Sparks Speech Services {% endblock %}
 
@@ -15,11 +17,16 @@
   <div class="header clearfix">
     <nav>
       <ul class="nav nav-pills pull-right">
-        <li role="presentation"> <a class="nav-link" href="{{ url_for ('main.index') }}">Home</a> </li>
+        <!--<li role="presentation"> <a class="nav-link" href="{{ url_for ('main.index') }}">Home</a> </li>
         <li role="presentation"> <a class="nav-link" href="{{ url_for ('main.services') }}">Services</a></li>
         <li role="presentation"> <a class="nav-link" href="{{ url_for ('main.about') }}">About Me</a></li>
         <li role="presentation"> <a class="nav-link" href="{{ url_for ('main.links') }}">Links & Resources</a></li>
-        <li role="presentation"> <a class="nav-link" href="{{ url_for ('main.contact') }}">Contact</a></li>
+        <li role="presentation"> <a class="nav-link" href="{{ url_for ('main.contact') }}">Contact</a></li>-->
+        {{ macros.render_header_item (active_page, 'main.index', 'Home') }}
+        {{ macros.render_header_item (active_page, 'main.services', 'Services') }}
+        {{ macros.render_header_item (active_page, 'main.about', 'About Me') }}
+        {{ macros.render_header_item (active_page, 'main.links', 'Links & Resources') }}
+        {{ macros.render_header_item (active_page, 'main.contact', 'Contact') }}
       </ul>
     </nav>
     <h3 class="text-muted">Language Sparks Speech Services</h3>
