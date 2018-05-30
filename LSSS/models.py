@@ -3,13 +3,20 @@ from . import db
 class Article ( db.Model ):
     __tablename__ = "articles"
     id = db.Column (db.Integer, primary_key=True)
-    title = db.Column (db.String)
     text = db.Column (db.Text)
     creation_date = db.Column (db.Date)
     user_id = db.Column (db.Integer, db.ForeignKey('users.id'))
 
     def __repr__ (self):
         return "<Article %r>" % self.title
+    
+    def to_json(self):
+        json_post = {
+            'url': url_for('main.news', id=self.id),
+            'text': self.text,
+            'creation_date': self.creation_date,
+        }
+        return json_post
 
 class User ( db.Model ):
     __tablename__ = "users"
